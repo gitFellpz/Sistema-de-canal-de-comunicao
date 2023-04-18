@@ -55,15 +55,16 @@ public class AtendimentoMensagem {
 							break;
 						default:
 							System.out.println("\nEscolha do motivo inválida!");
+							
 					}
 					
 					
 					break;
 				case 2:
-					int escolha2;
+					int escolha2, escolha3;
 					
 					/*
-					 1) Escolhe o tipo de mensagem (reclamação ou sugestão)
+					 1) Escolhe o tipo de mensagem (1reclamação ou 2sugestão)
 					 2) Retirar da fila correspondente
 					 3) Duas ações a seguir
 					 	3.1) respondida agora e enviar uma mensagem avisando que foi resolvida
@@ -79,12 +80,47 @@ public class AtendimentoMensagem {
 					escolha2 = input.nextInt();
 					
 					switch(escolha2) {
-					case
+						case 1:
+							if(!filaReclamacao.isEmpty()) {
+								
+								System.out.println(filaReclamacao.exibir());
+								
+								System.out.println(
+										  "\nComo seguir?"
+										+ "\n1 - Responder agora"
+										+ "\n2 - Encaminhar para o setor responsável.");
+								escolha3 = input.nextInt();
+								
+								if(escolha3 == 1)
+									System.out.println("\nEnviada resposta para cliente: sua solicitação já foi resolvida. Obrigado!!!");
+								
+								else 
+									if(escolha == 2) {
+										System.out.println("\nEm breve você receberá sua resposta!");
+										filaResolucao.enqueue(filaReclamacao.dequeue());
+										filaResolucao.exibir();
+									}
+								
+								else
+									System.out.println("\nOpção inválida");
+								
+							}
+							
+							else
+								System.out.println("\nFila de reclamações está vazia!");
+							
+							break;
+						case 2:
+							
+							break;
+						default:
+							System.out.println("\nOpção inválida!");
 					}
 					
 					
 					break;
 				case 3:
+					filaResolucao.exibir();
 					/*
 					 1) retira da filaReolução
 					 2) Enviar resposta pra io cliente
@@ -97,7 +133,7 @@ public class AtendimentoMensagem {
 			}
 			
 			System.out.print(
-					  "0 - Encerrar programa."
+					  "\n0 - Encerrar programa."
 					+ "\n1 - Recebimento de mensagem."
 					+ "\n2 - Atendimento de mensagem."
 					+ "\n3 - Recebimento e Encaminhamento de Resolução."

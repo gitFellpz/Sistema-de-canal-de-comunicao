@@ -1,6 +1,4 @@
 package fila;
-
-import java.util.Arrays;
 import entidades.Mensagem;
 
 public class FilaMensagens {
@@ -43,13 +41,10 @@ public class FilaMensagens {
 		cont--;
 		return elem;
 	}
-
-	@Override
-	public String toString() {
-		return "FilaMensagens [N=" + N + ", filaMensagens=" + Arrays.toString(filaMensagens) + ", ini=" + ini + ", fim="
-				+ fim + ", cont=" + cont + "]";
-	}
-
 	
+	public Mensagem exibir() {
+		Mensagem elem = filaMensagens[ini];
+		return elem;
+	}
 
 }

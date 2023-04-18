@@ -43,8 +43,12 @@ public class Mensagem {
 
 	@Override
 	public String toString() {
-		return "Mensagem [nome=" + nome + ", emailTelefone=" + emailTelefone + ", motivoContato=" + motivoContato
-				+ ", mensagem=" + mensagem + "]";
+		return "\n---|---|---|---|---"
+				+ "\nMensagem: "
+				+ "\nNome: " + nome
+				+ "\nEmail ou Telefone: " + emailTelefone
+				+ "\nMotivo do Contato: " + motivoContato
+				+ "\nMensagem: " + mensagem;
 	}
 
 }
