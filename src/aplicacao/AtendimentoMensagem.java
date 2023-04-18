@@ -9,6 +9,10 @@ public class AtendimentoMensagem {
 		Scanner input = new Scanner(System.in);
 		
 		FilaMensagens fila = new FilaMensagens();
+		Mensagem filaSugestao[] = new Mensagem[3];
+		Mensagem filaReclamacao[] = new Mensagem[3];
+		Mensagem filaResolucao[] = new Mensagem[3];
+		
 		
 		int escolha;
 		
