@@ -8,7 +8,7 @@ public class Mensagem {
 	private String mensagem;
 	
 	
-	public Mensagem(String nome, String emailTelefone, int motivoContato, String mensagem) {
+	public Mensagem(String nome, String emailTelefone, String mensagem, int motivoContato) {
 		this.nome = nome;
 		this.emailTelefone = emailTelefone;
 		this.motivoContato = motivoContato;
