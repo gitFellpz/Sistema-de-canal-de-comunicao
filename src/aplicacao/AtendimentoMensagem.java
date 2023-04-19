@@ -21,134 +21,220 @@ public class AtendimentoMensagem {
 				+ "\n3 - Recebimento e Encaminhamento de Resolução."
 				+ "\nDigite sua opção: ");
 		escolha = input.nextInt();
-	
+		System.out.print("-----------------------------------");
+		
 		while(escolha != 0) {
 			switch(escolha) {
+				//Escolha entre os 3 itens do menu
 				case 1:
 					Mensagem mensagem = new Mensagem("", "", "", 0);
 					
-					System.out.print("\nNome: ");
-					String nome = input.next();
-					mensagem.setNome(nome);
-					
-					System.out.print("Email ou Telefone: ");
-					String emailTelefone = input.next();
-					mensagem.setEmailTelefone(emailTelefone);					
-					
-					System.out.print("Mensagem: ");
-					String mensagens = input.next();
-					mensagem.setMensagem(mensagens);
-					
-					System.out.print("Motivo do Contato (1 - Reclamação / 2 - Sugestão): ");
+					System.out.print("\n\nMotivo do Contato (1 - Reclamação / 2 - Sugestão): ");
 					int motivo = input.nextInt();
 					mensagem.setMotivoContato(motivo);
-					
-					
+	
+					//Motivo do contato
 					switch(motivo) {
 						case 1:
-							filaReclamacao.enqueue(mensagem);
+							if(!filaReclamacao.isFull()) {
+								System.out.print("Nome: ");
+								String nome = input.next();
+								mensagem.setNome(nome);
+								
+								System.out.print("Email ou Telefone: ");
+								String emailTelefone = input.next();
+								mensagem.setEmailTelefone(emailTelefone);					
+								
+								System.out.print("Mensagem: ");
+								String mensagens = input.next();
+								mensagem.setMensagem(mensagens);
+								
+								filaReclamacao.enqueue(mensagem);
+							}
+							else {
+								System.out.println(
+										"\n---|---|---|---|---"
+										+ "\nFila de reclamações está cheia!"
+										+ "\n---|---|---|---|---");
+							}
 							
 							break;
 						case 2:
-							filaSugestao.enqueue(mensagem);
+							if(!filaSugestao.isFull()) {
+								System.out.print("Nome: ");
+								String nome = input.next();
+								mensagem.setNome(nome);
+								
+								System.out.print("Email ou Telefone: ");
+								String emailTelefone = input.next();
+								mensagem.setEmailTelefone(emailTelefone);					
+								
+								System.out.print("Mensagem: ");
+								String mensagens = input.next();
+								mensagem.setMensagem(mensagens);
+								
+								filaSugestao.enqueue(mensagem);
+							}
+							else {
+								System.out.println(
+										"\n---|---|---|---|---"
+										+ "\nFila de reclamações está cheia!"
+										+ "\n---|---|---|---|---");
+							}
 							
 							break;
 						default:
 							System.out.println("\nEscolha do motivo inválida!");
-							
 					}
 					
-					
-					break;
+				break;
+				//Escolha entre os 3 itens do menu
 				case 2:
 					int escolha2, escolha3;
 					
-					/*
-					 1) Escolhe o tipo de mensagem (1reclamação ou 2sugestão)
-					 2) Retirar da fila correspondente
-					 3) Duas ações a seguir
-					 	3.1) respondida agora e enviar uma mensagem avisando que foi resolvida
-					 	3.2) encaminhar para outro setor, enviar resposta avisando e enviar para filaResolução
-					 
-					 */
-					
 					System.out.println(
-							  "\nEscolha o tipo de mensagem para responder!"
+							  "\n\nEscolha o tipo de mensagem para responder!"
 							+ "\n1 - Reclamação"
 							+ "\n2 - Sugestão");
-					
 					escolha2 = input.nextInt();
 					
 					switch(escolha2) {
+						//Escolha do TIPO de mensagem	
 						case 1:
 							if(!filaReclamacao.isEmpty()) {
-								
+				
 								System.out.println(filaReclamacao.exibir());
-								
 								System.out.println(
 										  "\nComo seguir?"
 										+ "\n1 - Responder agora"
 										+ "\n2 - Encaminhar para o setor responsável.");
 								escolha3 = input.nextInt();
 								
-								if(escolha3 == 1)
-									System.out.println("\nEnviada resposta para cliente: sua solicitação já foi resolvida. Obrigado!!!");
-								
+								if(escolha3 == 1) {
+									System.out.println(
+											"\n---|---|---|---|---"
+											+ "\nEnviada resposta para cliente: sua solicitação já foi resolvida. Obrigado!!!"
+											+ "\n---|---|---|---|---");
+									filaReclamacao.dequeue();
+								}
 								else 
 									if(escolha == 2) {
-										System.out.println("\nEm breve você receberá sua resposta!");
+										System.out.println(
+												"\n---|---|---|---|---"
+												+ "\nEm breve você receberá sua resposta!"
+												+ "\n---|---|---|---|---");
 										filaResolucao.enqueue(filaReclamacao.dequeue());
 										filaResolucao.exibir();
 									}
 								
 								else
 									System.out.println("\nOpção inválida");
-								
 							}
 							
 							else
-								System.out.println("\nFila de reclamações está vazia!");
+								System.out.println(
+										"\n---|---|---|---|---"
+										+ "\nFila de reclamações está vazia!"
+										+ "\n---|---|---|---|---");
 							
 							break;
+						//Escolha do TIPO de mensagem
 						case 2:
+							if(!filaSugestao.isEmpty()) {
+								
+								System.out.println(filaSugestao.exibir());
+								System.out.println(
+										  "\nComo seguir?"
+										+ "\n1 - Responder agora"
+										+ "\n2 - Encaminhar para o setor responsável.");
+								escolha3 = input.nextInt();
+								
+								if(escolha3 == 1) {
+									System.out.println(
+											"\n---|---|---|---|---"
+											+ "\nEnviada resposta para cliente: sua solicitação já foi resolvida. Obrigado!!"
+											+ "\n---|---|---|---|---");
+									filaSugestao.dequeue();
+								}
+								else 
+									if(escolha == 2) {
+										System.out.println(
+												"\n---|---|---|---|---"
+												+ "\nEm breve você receberá sua resposta!"
+												+ "\n---|---|---|---|---");
+										filaResolucao.enqueue(filaSugestao.dequeue());
+										filaResolucao.exibir();
+									}
+								
+								else
+									System.out.println("\nOpção inválida");
+							}
+							
+							else
+								System.out.println(
+										"\n---|---|---|---|---"
+										+ "\nFila de sugestões está vazia!"
+										+ "\n---|---|---|---|---");
 							
 							break;
+						//Escolha do TIPO de mensagem
 						default:
 							System.out.println("\nOpção inválida!");
 					}
 					
-					
 					break;
+				//Escolha entre os 3 itens do menu
 				case 3:
-					filaResolucao.exibir();
-					/*
-					 1) retira da filaReolução
-					 2) Enviar resposta pra io cliente
-					 */
+					int escolha4;
 					
-					
+					if(!filaResolucao.isEmpty()) {
+						System.out.println(filaResolucao.exibir());
+						System.out.println("\nDeseja responder essa mensagem??"
+								+ "\n1 - Sim"
+								+ "\n2 - Não");
+						escolha4 = input.nextInt();
+						
+						if(escolha4 == 1) {
+							filaResolucao.dequeue();
+							System.out.println(
+									"\n---|---|---|---|---"
+									+ "\nEnviada resposta para cliente: sua solicitação já foi resolvida pelo setor responsável. Obrigado!!!"
+									+ "\n---|---|---|---|---");
+						}
+						else
+							if(escolha4 == 2) {
+								System.out.println(
+										"\n---|---|---|---|---"
+										+ "\nVoltando para o menu..."
+										+ "\n---|---|---|---|---");
+							}
+						
+					}
+					else
+						System.out.println(
+								"\n\n---|---|---|---|---"
+								+ "\nFila de Resoluções está vazia!"
+								+ "\n---|---|---|---|---");
+
 					break;
+				//Escolha entre os 3 itens do menu
 				default:
 					System.out.println("Opção inválida!");
 			}
-			
 			System.out.print(
-					  "\n0 - Encerrar programa."
+					  "\n-----------------------------------"
+					+ "\n0 - Encerrar programa."
 					+ "\n1 - Recebimento de mensagem."
 					+ "\n2 - Atendimento de mensagem."
 					+ "\n3 - Recebimento e Encaminhamento de Resolução."
 					+ "\nDigite sua opção: ");
-			
 			escolha = input.nextInt();
+			System.out.print("-----------------------------------");
 			
 		}
 		
 		System.out.println("\nPrograma encerrado!");
-		
-		
-		
-		
 		input.close();
 	}
-
+	
 }

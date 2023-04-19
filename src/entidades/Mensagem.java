@@ -15,7 +15,6 @@ public class Mensagem {
 		this.mensagem = mensagem;
 	}
 
-
 	public String getNome() {
 		return nome;
 	}
@@ -48,7 +47,8 @@ public class Mensagem {
 				+ "\nNome: " + nome
 				+ "\nEmail ou Telefone: " + emailTelefone
 				+ "\nMotivo do Contato: " + motivoContato
-				+ "\nMensagem: " + mensagem;
+				+ "\nMensagem: " + mensagem
+				+ "\n---|---|---|---|---";
 	}
 
 }
