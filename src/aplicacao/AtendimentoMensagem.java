@@ -45,8 +45,11 @@ public class AtendimentoMensagem {
 								String emailTelefone = input.next();
 								mensagem.setEmailTelefone(emailTelefone);					
 								
+								//Limpando o buffer
+								input.nextLine();
+								
 								System.out.print("Mensagem: ");
-								String mensagens = input.next();
+								String mensagens = input.nextLine();
 								mensagem.setMensagem(mensagens);
 								
 								filaReclamacao.enqueue(mensagem);
@@ -69,8 +72,11 @@ public class AtendimentoMensagem {
 								String emailTelefone = input.next();
 								mensagem.setEmailTelefone(emailTelefone);					
 								
+								//Limpando o buffer
+								input.nextLine();
+								
 								System.out.print("Mensagem: ");
-								String mensagens = input.next();
+								String mensagens = input.nextLine();
 								mensagem.setMensagem(mensagens);
 								
 								filaSugestao.enqueue(mensagem);
@@ -109,6 +115,7 @@ public class AtendimentoMensagem {
 										+ "\n1 - Responder agora"
 										+ "\n2 - Encaminhar para o setor responsável.");
 								escolha3 = input.nextInt();
+								System.out.println("-----------------------------------");
 								
 								if(escolha3 == 1) {
 									System.out.println(
